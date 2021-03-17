@@ -10,6 +10,7 @@ RUN apt-get update \
       doxygen \
       g++ \
       git \
+      pkg-config \
       libcurl4-gnutls-dev \
       libgeoip-dev \
       liblua5.3-dev \
@@ -43,7 +44,7 @@ RUN git clone https://github.com/SpiderLabs/ModSecurity --branch v3.0.4 --depth 
  && ./build.sh \
  && git submodule init \
  && git submodule update \
- && ./configure --with-yajl=/sources/yajl/build/yajl-2.1.0/ \
+ && PKG_CONFIG=pkg-config ./configure --with-yajl=/sources/yajl/build/yajl-2.1.0/ \
  && make install
 
 # Generate self-signed certificates (if needed)
